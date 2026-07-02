@@ -289,13 +289,28 @@
         <div class="module-card" id="module-2">
             <div class="module-header">
                 <h3>📦 Módulo 2 — Estruturas de Dados</h3>
-                <span class="badge badge-yellow">⏳ Em breve</span>
+                <span class="badge badge-green">✅ Disponível</span>
             </div>
             <p class="module-desc">
                 Listas, Dicionários, Tuplas e Sets — seus novos amigos no Python.
             </p>
             <div class="progress-container">
                 <div class="progress-fill" id="progress-m2" style="width: 0%"></div>
+            </div>
+            <div class="slide-grid">
+                <a href="slides/m2_01_capa.html" class="slide-link" data-slide="m2_01">📋 Intro</a>
+                <a href="slides/m2_02_listas.html" class="slide-link" data-slide="m2_02">📃 Listas</a>
+                <a href="slides/m2_03_metodos_lista.html" class="slide-link" data-slide="m2_03">🔧 Métodos</a>
+                <a href="slides/m2_04_ex1.html" class="slide-link" data-slide="m2_04">🎯 Ex 1</a>
+                <a href="slides/m2_05_dicionarios.html" class="slide-link" data-slide="m2_05">📖 Dicionários</a>
+                <a href="slides/m2_06_acesso_dict.html" class="slide-link" data-slide="m2_06">🔑 Acesso Dict</a>
+                <a href="slides/m2_07_ex2.html" class="slide-link" data-slide="m2_07">🎯 Ex 2</a>
+                <a href="slides/m2_08_tuplas.html" class="slide-link" data-slide="m2_08">📦 Tuplas</a>
+                <a href="slides/m2_09_sets.html" class="slide-link" data-slide="m2_09">🧮 Sets</a>
+                <a href="slides/m2_10_ex3.html" class="slide-link" data-slide="m2_10">🎯 Ex 3</a>
+                <a href="slides/m2_11_listcomp.html" class="slide-link" data-slide="m2_11">⚡ List Comp</a>
+                <a href="slides/m2_12_desafio.html" class="slide-link" data-slide="m2_12">🏆 Desafio</a>
+                <a href="slides/m2_13_checklist.html" class="slide-link" data-slide="m2_13">✅ Checklist</a>
             </div>
         </div>
 
@@ -358,7 +373,8 @@
         function updateIndexProgress() {
             const modules = [
                 { id: 'm0', slides: ['m0_01','m0_02','m0_03','m0_04','m0_05','m0_06'] },
-                { id: 'm1', slides: ['m1_01','m1_02','m1_03','m1_04','m1_05','m1_06','m1_07','m1_08','m1_09','m1_10','m1_11','m1_12','m1_13','m1_14','m1_15'] }
+                { id: 'm1', slides: ['m1_01','m1_02','m1_03','m1_04','m1_05','m1_06','m1_07','m1_08','m1_09','m1_10','m1_11','m1_12','m1_13','m1_14','m1_15'] },
+                { id: 'm2', slides: ['m2_01','m2_02','m2_03','m2_04','m2_05','m2_06','m2_07','m2_08','m2_09','m2_10','m2_11','m2_12','m2_13'] }
             ];
 
             modules.forEach(mod => {
