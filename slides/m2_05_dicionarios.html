@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.3 Dicionários — Tabelas com Chave Primária | Python para SQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+/* ============================================
+   PYTHON PARA QUEM MANDA NO SQL - ESTILOS BASE
+   ============================================ */
+
+:root {
+    --main-color: #9cdcfe;
+    --accent-color: #c586c0;
+    --success-color: #4ec9b0;
+    --warning-color: #dcdcaa;
+    --danger-color: #f44747;
+    --bg-dark: #1e1e1e;
+    --bg-card: #252526;
+    --bg-hover: #2d2d30;
+    --text-primary: #d4d4d4;
+    --text-secondary: #808080;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ============================================
+   LAYOUT PRINCIPAL
+   ============================================ */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.slide {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid #3e3e42;
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   TIPOGRAFIA
+   ============================================ */
+
+h1 {
+    color: var(--main-color);
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    color: var(--main-color);
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+h3 {
+    color: var(--accent-color);
+    font-size: 1.15em;
+    font-weight: 600;
+    margin: 25px 0 12px 0;
+}
+
+p {
+    margin-bottom: 12px;
+    font-size: 1.05em;
+}
+
+/* ============================================
+   ELEMENTOS DE CÓDIGO
+   ============================================ */
+
+code {
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    background: rgba(157, 205, 254, 0.1);
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 0.92em;
+    color: var(--warning-color);
+}
+
+pre {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 15px 0;
+    border: 1px solid #3e3e42;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    color: #d4d4d4;
+    font-size: 0.88em;
+    line-height: 1.6;
+}
+
+.code-label {
+    background: var(--accent-color);
+    color: var(--bg-dark);
+    padding: 4px 14px;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.75em;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: -2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   CAIXAS ESPECIAIS
+   ============================================ */
+
+.tip-box, .warning-box, .challenge-box, .info-box {
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.tip-box {
+    background: rgba(78, 201, 176, 0.1);
+    border-left: 4px solid var(--success-color);
+}
+
+.warning-box {
+    background: rgba(220, 220, 170, 0.1);
+    border-left: 4px solid var(--warning-color);
+}
+
+.challenge-box {
+    background: rgba(197, 134, 192, 0.1);
+    border-left: 4px solid var(--accent-color);
+}
+
+.info-box {
+    background: rgba(157, 205, 254, 0.1);
+    border-left: 4px solid var(--main-color);
+}
+
+.tip-box::before { content: "💡 "; }
+.warning-box::before { content: "⚠️ "; }
+.challenge-box::before { content: "🎯 "; }
+.info-box::before { content: "ℹ️ "; }
+
+/* ============================================
+   CHECKBOX FUNCIONAIS (AGORA SIM!)
+   ============================================ */
+
+.checklist {
+    list-style: none;
+    padding: 0;
+}
+
+.checklist li {
+    padding: 10px 0;
+    font-size: 1em;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.checklist li:hover {
+    background: var(--bg-hover);
+}
+
+.checklist input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--success-color);
+    border-radius: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.checklist input[type="checkbox"]:checked {
+    background: var(--success-color);
+}
+
+.checklist input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    color: var(--bg-dark);
+    font-weight: bold;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checklist li.checked {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.checklist li.checked:hover {
+    opacity: 0.8;
+}
+
+/* ============================================
+   COMPARAÇÃO SQL vs PYTHON
+   ============================================ */
+
+.vs-comparison {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    align-items: stretch;
+}
+
+.vs-box {
+    flex: 1;
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid #3e3e42;
+}
+
+.vs-box h4 {
+    margin: 0 0 12px 0;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.vs-box.sql h4 { color: #ce9178; }
+.vs-box.sql { border-top: 3px solid #ce9178; }
+
+.vs-box.python h4 { color: var(--success-color); }
+.vs-box.python { border-top: 3px solid var(--success-color); }
+
+.vs-divider {
+    display: flex;
+    align-items: center;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 0 5px;
+}
+
+/* ============================================
+   TABELAS
+   ============================================ */
+
+.table-compact {
+    font-size: 0.95em;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.table-compact th, .table-compact td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.table-compact th {
+    color: var(--main-color);
+    font-weight: 600;
+    background: rgba(157, 205, 254, 0.05);
+}
+
+.table-compact tr:hover td {
+    background: var(--bg-hover);
+}
+
+/* ============================================
+   BADGES E LABELS
+   ============================================ */
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.badge-success { background: rgba(78, 201, 176, 0.2); color: var(--success-color); }
+.badge-accent { background: rgba(197, 134, 192, 0.2); color: var(--accent-color); }
+.badge-warning { background: rgba(220, 220, 170, 0.2); color: var(--warning-color); }
+
+.section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color);
+    color: var(--bg-dark);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.85em;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   NAVEGAÇÃO ENTRE SLIDES
+   ============================================ */
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid #3e3e42;
+    margin-top: 30px;
+}
+
+.nav-btn {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border: 1px solid #3e3e42;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-dark);
+    border-color: var(--accent-color);
+}
+
+.nav-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.nav-progress {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   INDEX / DASHBOARD
+   ============================================ */
+
+.index-header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.index-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.index-header .subtitle {
+    color: var(--accent-color);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+.index-header .description {
+    color: var(--text-secondary);
+    font-size: 1em;
+}
+
+.module-card {
+    background: var(--bg-card);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+    border: 1px solid #3e3e42;
+    transition: all 0.3s;
+}
+
+.module-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.module-card .module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.module-card h3 {
+    margin: 0;
+    color: var(--main-color);
+    font-size: 1.3em;
+}
+
+.module-card .module-slides {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.module-card .slide-link {
+    background: var(--bg-dark);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85em;
+    border: 1px solid #3e3e42;
+    transition: all 0.2s;
+}
+
+.module-card .slide-link:hover {
+    background: var(--accent-color);
+    color: var(--bg-dark);
+    border-color: var(--accent-color);
+}
+
+.module-card .slide-link.completed {
+    background: rgba(78, 201, 176, 0.15);
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.progress-bar-container {
+    background: var(--bg-dark);
+    border-radius: 10px;
+    height: 8px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 768px) {
+    .container { padding: 20px 15px; }
+    .slide { padding: 25px; }
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.2em; }
+    .vs-comparison { flex-direction: column; }
+    .vs-divider { transform: rotate(90deg); padding: 10px 0; }
+}
+
+/* ============================================
+   UTILITÁRIOS
+   ============================================ */
+
+.text-center { text-align: center; }
+.mt-2 { margin-top: 20px; }
+.mt-3 { margin-top: 30px; }
+.mb-2 { margin-bottom: 20px; }
+.emoji-big { font-size: 1.4em; margin-right: 8px; }
+
+.clickable-card {
+    display: block;
+    background: var(--bg-dark);
+    padding: 30px 25px;
+    border-radius: 14px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.clickable-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    background: var(--bg-hover);
+}
+.clickable-card .emoji {
+    font-size: 3em;
+    margin-bottom: 12px;
+    display: block;
+}
+.clickable-card .label {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1em;
+    display: block;
+}
+.clickable-card .sublabel {
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: block;
+}
+.clickable-card:hover .label {
+    color: var(--accent-color);
+}
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+    </style>
+</head>
+<body data-slide-id="m2_05">
+    <div class="container">
+
+        <div class="slide">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <span class="badge badge-accent">Módulo 2</span>
+                <a href="../index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9em;">🏠 Voltar ao início</a>
+            </div>
+
+            <h1>2.3 Dicionários — Tabelas com Chave Primária</h1>
+            
+
+            <div class="vs-comparison">
+    <div class="vs-box sql">
+        <h4>🗄️ SQL</h4>
+        <pre style="font-size: 0.8em;"><code class="sql">SELECT * FROM clientes WHERE id = 1;
+
+-- Resultado:
+-- id | nome      | email           | idade
+-- 1  | Ana Souza | ana@email.com   | 32</code></pre>
+    </div>
+    <div class="vs-divider">➡️</div>
+    <div class="vs-box python">
+        <h4>🐍 Python</h4>
+        <pre style="font-size: 0.85em;"><code class="python">cliente = {
+    "id": 1,
+    "nome": "Ana Souza",
+    "email": "ana@email.com",
+    "idade": 32
+}
+
+print(cliente["nome"])   # Ana Souza
+print(cliente["email"])  # ana@email.com</code></pre>
+    </div>
+</div>
+<div class="tip-box">
+    💡 <strong>Dicionários</strong> são como tabelas onde a <strong>chave</strong> é o nome da coluna e o <strong>valor</strong> é o dado. É como ter um registro inteiro em uma variável só!
+</div>
+<div class="code-label">Criando um dicionário</div>
+<pre><code class="python"># Forma 1: Direta
+cliente = {"nome": "Ana", "idade": 32, "vip": True}
+
+# Forma 2: Com dict()
+cliente = dict(nome="Ana", idade=32, vip=True)
+
+# Forma 3: Vazio e preenchendo
+cliente = {}
+cliente["nome"] = "Ana"
+cliente["idade"] = 32</code></pre>
+
+            <div class="nav-bar">
+                <a href="m2_04_ex1.html" class="nav-btn">⬅ Anterior</a>
+                <span class="nav-progress">m2_05</span>
+                <a href="m2_06_acesso_dict.html" class="nav-btn">Próximo ➡</a>
+            </div>
+        </div>
+
+    </div>
+    <script>
+// ============================================
+// PYTHON PARA QUEM MANDA NO SQL - SCRIPTS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    initCheckboxes();
+    initProgressTracking();
+    highlightCurrentSlide();
+});
+
+// ============================================
+// CHECKBOXES FUNCIONAIS COM LOCALSTORAGE
+// ============================================
+
+function initCheckboxes() {
+    const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        // Restaura estado salvo
+        const slideId = document.body.dataset.slideId;
+        const checkboxId = checkbox.dataset.id;
+        const storageKey = `check_${slideId}_${checkboxId}`;
+        const saved = localStorage.getItem(storageKey);
+
+        if (saved === 'true') {
+            checkbox.checked = true;
+            checkbox.closest('li').classList.add('checked');
+        }
+
+        // Salva no click
+        checkbox.addEventListener('change', function() {
+            localStorage.setItem(storageKey, this.checked);
+            this.closest('li').classList.toggle('checked', this.checked);
+            updateProgress();
+        });
+    });
+}
+
+// ============================================
+// PROGRESSO DO MÓDULO
+// ============================================
+
+function updateProgress() {
+    const slideId = document.body.dataset.slideId;
+    const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked');
+
+    if (checkboxes.length > 0) {
+        const percent = Math.round((checked.length / checkboxes.length) * 100);
+        localStorage.setItem(`progress_${slideId}`, percent);
+    }
+
+    // Marca slide como visitado
+    localStorage.setItem(`visited_${slideId}`, 'true');
+}
+
+function initProgressTracking() {
+    updateProgress();
+}
+
+// ============================================
+// DESTACA SLIDE ATUAL NO INDEX
+// ============================================
+
+function highlightCurrentSlide() {
+    const currentSlide = document.body.dataset.slideId;
+    if (!currentSlide) return;
+
+    const links = document.querySelectorAll('.slide-link');
+    links.forEach(link => {
+        if (link.dataset.slide === currentSlide) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// ============================================
+// RESETAR PROGRESSO (debug)
+// ============================================
+
+function resetProgress() {
+    if (confirm('Tem certeza que quer resetar TODO o progresso?')) {
+        Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('check_') || key.startsWith('progress_') || key.startsWith('visited_')) {
+                localStorage.removeItem(key);
+            }
+        });
+        location.reload();
+    }
+}
+
+    </script>
+</body>
+</html>
