@@ -3,7 +3,7 @@
 > Um cursinho leve, moderno e feito com carinho para quem já domina SQL e quer aprender Python.
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?logo=github)](https://gustavodeoliveiradev.github.io/python-para-sql-curso/)
-[![Módulos](https://img.shields.io/badge/Módulos-3%2F6-blue)]()
+[![Módulos](https://img.shields.io/badge/Módulos-4%2F6-blue)]()
 [![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)]()
 
 ---
@@ -23,7 +23,7 @@ Não precisa instalar nada! Os slides funcionam direto no navegador.
 | **0** | 🛠️ Ambiente & VS Code | 6 slides | ✅ Pronto | [Ver slides](slides/m0_01_capa.html) |
 | **1** | 🧠 Lógica de Programação | 15 slides | ✅ Pronto | [Ver slides](slides/m1_01_capa.html) |
 | **2** | 📦 Estruturas de Dados | 13 slides | ✅ Pronto | [Ver slides](slides/m2_01_capa.html) |
-| **3** | 🔗 Python + SQL (A Ponte) | ~12 slides | ⏳ Em breve | — |
+| **3** | 🔗 Python + SQL (A Ponte) | 13 slides | ✅ Pronto | [Ver slides](slides/m3_01_capa.html) |
 | **4** | ⚙️ Automação & Scripts Úteis | ~10 slides | ⏳ Em breve | — |
 | **5** | 🏆 Projeto Final & Desafios | ~8 slides | ⏳ Em breve | — |
 
@@ -97,6 +97,7 @@ xdg-open index.html
 - **CSS3** — Tema escuro estilo VS Code (Dracula)
 - **JavaScript** — Checkboxes funcionais e progresso
 - **GitHub Pages** — Hospedagem gratuita
+- **sqlite3 + pandas** — Ponte entre Python e SQL (Módulo 3)
 
 ---
 

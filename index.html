@@ -222,9 +222,9 @@
             Slides interativos, exercícios práticos e muito mais.
         </p>
         <div class="badges">
-            <span class="badge badge-green">✅ 3 Módulos Prontos</span>
-            <span class="badge badge-blue">📚 34 Slides</span>
-            <span class="badge badge-yellow">🎯 8 Exercícios</span>
+            <span class="badge badge-green">✅ 4 Módulos Prontos</span>
+            <span class="badge badge-blue">📚 47 Slides</span>
+            <span class="badge badge-yellow">🎯 10 Exercícios</span>
         </div>
         <br>
         <a href="slides/m0_01_capa.html" class="start-btn">🚀 Começar o Curso</a>
@@ -315,16 +315,31 @@
         </div>
 
         <!-- MÓDULO 3 -->
-        <div class="module-card coming-soon" id="module-3">
+        <div class="module-card" id="module-3">
             <div class="module-header">
                 <h3>🔗 Módulo 3 — Python + SQL (A Ponte)</h3>
-                <span class="badge badge-yellow">⏳ Em breve</span>
+                <span class="badge badge-green">✅ Disponível</span>
             </div>
             <p class="module-desc">
                 Conectando ao banco, executando queries, pandas e automação de relatórios.
             </p>
             <div class="progress-container">
                 <div class="progress-fill" id="progress-m3" style="width: 0%"></div>
+            </div>
+            <div class="slide-grid">
+                <a href="slides/m3_01_capa.html" class="slide-link" data-slide="m3_01">📋 Intro</a>
+                <a href="slides/m3_02_sqlite_intro.html" class="slide-link" data-slide="m3_02">🔗 Por que sqlite3?</a>
+                <a href="slides/m3_03_conexao.html" class="slide-link" data-slide="m3_03">🔌 Conexão</a>
+                <a href="slides/m3_04_criando_tabela.html" class="slide-link" data-slide="m3_04">🏗️ Criando Tabela</a>
+                <a href="slides/m3_05_insert.html" class="slide-link" data-slide="m3_05">➕ Insert</a>
+                <a href="slides/m3_06_ex1.html" class="slide-link" data-slide="m3_06">🎯 Ex 1</a>
+                <a href="slides/m3_07_select.html" class="slide-link" data-slide="m3_07">🔎 Select</a>
+                <a href="slides/m3_08_seguranca.html" class="slide-link" data-slide="m3_08">🛡️ Segurança</a>
+                <a href="slides/m3_09_pandas.html" class="slide-link" data-slide="m3_09">🐼 pandas</a>
+                <a href="slides/m3_10_ex2.html" class="slide-link" data-slide="m3_10">🎯 Ex 2</a>
+                <a href="slides/m3_11_exportacao.html" class="slide-link" data-slide="m3_11">⚙️ Exportação</a>
+                <a href="slides/m3_12_desafio.html" class="slide-link" data-slide="m3_12">🏆 Desafio</a>
+                <a href="slides/m3_13_checklist.html" class="slide-link" data-slide="m3_13">✅ Checklist</a>
             </div>
         </div>
 
@@ -374,7 +389,8 @@
             const modules = [
                 { id: 'm0', slides: ['m0_01','m0_02','m0_03','m0_04','m0_05','m0_06'] },
                 { id: 'm1', slides: ['m1_01','m1_02','m1_03','m1_04','m1_05','m1_06','m1_07','m1_08','m1_09','m1_10','m1_11','m1_12','m1_13','m1_14','m1_15'] },
-                { id: 'm2', slides: ['m2_01','m2_02','m2_03','m2_04','m2_05','m2_06','m2_07','m2_08','m2_09','m2_10','m2_11','m2_12','m2_13'] }
+                { id: 'm2', slides: ['m2_01','m2_02','m2_03','m2_04','m2_05','m2_06','m2_07','m2_08','m2_09','m2_10','m2_11','m2_12','m2_13'] },
+                { id: 'm3', slides: ['m3_01','m3_02','m3_03','m3_04','m3_05','m3_06','m3_07','m3_08','m3_09','m3_10','m3_11','m3_12','m3_13'] }
             ];
 
             modules.forEach(mod => {
