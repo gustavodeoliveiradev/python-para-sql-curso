@@ -54,7 +54,8 @@ python-para-sql-curso/
 └── 📂 exercicios/         # Códigos dos exercícios
     ├── modulo_0.py
     ├── modulo_1.py
-    └── modulo_2.py
+    ├── modulo_2.py
+    └── modulo_3.py
 ```
 
 ---
