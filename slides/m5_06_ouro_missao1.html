@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Checklist — Módulo 2 | Python para SQL</title>
+    <title>🥇 Missão Ouro 1 | Python para SQL</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
 /* ============================================
@@ -546,44 +549,69 @@ pre code {
 }
 
     </style>
+    </style>
 </head>
-<body data-slide-id="m2_13">
+<body data-slide-id="m5_06_ouro_missao1">
     <div class="container">
 
         <div class="slide">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <span class="badge badge-accent">Módulo 2</span>
+                <span class="badge badge-accent">Módulo 5</span>
                 <a href="../index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9em;">🏠 Voltar ao início</a>
             </div>
 
-            <h1>✅ Checklist — Módulo 2</h1>
-            <p style="color: var(--accent-color); font-size: 1.1em; margin-bottom: 25px;">Marque o que você já domina:</p>
+            <h1><span style="color:#ffd700">🥇 Missão Ouro 1</span> — CRUD Seguro</h1>
 
-            <ul class="checklist">
-    <li><input type="checkbox" data-id="1"> Criei e manipulei uma <strong>lista</strong> (append, insert, remove, sort)</li>
-    <li><input type="checkbox" data-id="2"> Criei e acessei um <strong>dicionário</strong> (chave-valor)</li>
-    <li><input type="checkbox" data-id="3"> Entendi a diferença entre <strong>lista</strong> (mutável) e <strong>tupla</strong> (imutável)</li>
-    <li><input type="checkbox" data-id="4"> Usei <strong>set</strong> para remover duplicatas e fazer operações de conjunto</li>
-    <li><input type="checkbox" data-id="5"> Fiz um <strong>List Comprehension</strong> com filtro e transformação</li>
-    <li><input type="checkbox" data-id="6"> Completei o Desafio Final do Módulo 2</li>
-</ul>
-<div class="text-center mt-3">
-    <p style="font-size: 1.3em; color: var(--success-color);">🎉 Agora você domina as estruturas de dados do Python!</p>
-    <p style="color: var(--text-secondary); margin-top: 15px;">
-        Próximo passo: <strong>Módulo 3 — Python + SQL (A Ponte)</strong><br>
-        (Conectando ao banco, executando queries, pandas)
-    </p>
+            <div class="challenge-box">
+    <h4>Missão</h4>
+    <p>Recapitulando <strong>sqlite3 e queries parametrizadas</strong> (Módulo 3): crie uma tabela <code>tarefas</code> e implemente as 4 operações básicas — <strong>C</strong>reate, <strong>R</strong>ead, <strong>U</strong>pdate, <strong>D</strong>elete — todas com <code>?</code> como placeholder.</p>
+</div>
+
+<div class="code-label">Gabarito</div>
+<pre><code class="python">import sqlite3
+
+conexao = sqlite3.connect(":memory:")
+cursor = conexao.cursor()
+cursor.execute("""CREATE TABLE tarefas (
+    id INTEGER PRIMARY KEY, titulo TEXT, feita INTEGER DEFAULT 0)""")
+
+def criar(titulo):
+    cursor.execute("INSERT INTO tarefas (titulo) VALUES (?)", (titulo,))
+    conexao.commit()
+
+def listar():
+    cursor.execute("SELECT * FROM tarefas")
+    return cursor.fetchall()
+
+def marcar_feita(id_tarefa):
+    cursor.execute("UPDATE tarefas SET feita = 1 WHERE id = ?", (id_tarefa,))
+    conexao.commit()
+
+def remover(id_tarefa):
+    cursor.execute("DELETE FROM tarefas WHERE id = ?", (id_tarefa,))
+    conexao.commit()
+
+criar("Estudar Python")
+criar("Revisar SQL")
+marcar_feita(1)
+remover(2)
+
+print(listar())  # [(1, 'Estudar Python', 1)]
+conexao.close()</code></pre>
+
+<div class="tip-box">
+    💡 Todo <code>?</code> aqui é proposital — nenhum valor entra na query por concatenação de string. Isso é o hábito de segurança que você levou do Módulo 3.
 </div>
 
             <div class="nav-bar">
-                <a href="m2_12_desafio.html" class="nav-btn">⬅ Anterior</a>
-                <span class="nav-progress">m2_13</span>
-                <a href="m3_01_capa.html" class="nav-btn">Próximo ➡</a>
+                <a href="m5_05_prata_missao2.html" class="nav-btn">⬅ Anterior</a>
+                <span class="nav-progress">m5_06_ouro_missao1</span>
+                <a href="m5_07_ouro_missao2.html" class="nav-btn">Próximo ➡</a>
             </div>
         </div>
 
     </div>
-    <script>
+    <script>    <script>
 // ============================================
 // PYTHON PARA QUEM MANDA NO SQL - SCRIPTS
 // ============================================

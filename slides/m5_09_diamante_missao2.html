@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Checklist — Módulo 2 | Python para SQL</title>
+    <title>💎 Missão Diamante 2 | Python para SQL</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
 /* ============================================
@@ -546,44 +549,62 @@ pre code {
 }
 
     </style>
+    </style>
 </head>
-<body data-slide-id="m2_13">
+<body data-slide-id="m5_09_diamante_missao2">
     <div class="container">
 
         <div class="slide">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <span class="badge badge-accent">Módulo 2</span>
+                <span class="badge badge-accent">Módulo 5</span>
                 <a href="../index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9em;">🏠 Voltar ao início</a>
             </div>
 
-            <h1>✅ Checklist — Módulo 2</h1>
-            <p style="color: var(--accent-color); font-size: 1.1em; margin-bottom: 25px;">Marque o que você já domina:</p>
+            <h1><span style="color:#9cdcfe">💎 Missão Diamante 2</span> — Credenciais Seguras</h1>
 
-            <ul class="checklist">
-    <li><input type="checkbox" data-id="1"> Criei e manipulei uma <strong>lista</strong> (append, insert, remove, sort)</li>
-    <li><input type="checkbox" data-id="2"> Criei e acessei um <strong>dicionário</strong> (chave-valor)</li>
-    <li><input type="checkbox" data-id="3"> Entendi a diferença entre <strong>lista</strong> (mutável) e <strong>tupla</strong> (imutável)</li>
-    <li><input type="checkbox" data-id="4"> Usei <strong>set</strong> para remover duplicatas e fazer operações de conjunto</li>
-    <li><input type="checkbox" data-id="5"> Fiz um <strong>List Comprehension</strong> com filtro e transformação</li>
-    <li><input type="checkbox" data-id="6"> Completei o Desafio Final do Módulo 2</li>
-</ul>
+            <div class="challenge-box">
+    <h4>Missão</h4>
+    <p>Recapitulando <strong>variáveis de ambiente</strong> (Módulo 4): proteja a "senha" de um remetente de e-mail fictício usando <code>.env</code> + <code>python-dotenv</code>, e valide se a variável existe antes de usar.</p>
+</div>
+
+<div class="code-label">Gabarito — .env</div>
+<pre><code class="python">EMAIL_REMETENTE=relatorios@empresa.com
+EMAIL_SENHA=uma_senha_de_app_aqui</code></pre>
+
+<div class="code-label">Gabarito — script.py</div>
+<pre><code class="python">import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def obter_credencial(nome_variavel):
+    valor = os.environ.get(nome_variavel)
+    if not valor:
+        raise ValueError(f"Variável de ambiente '{nome_variavel}' não configurada!")
+    return valor
+
+remetente = obter_credencial("EMAIL_REMETENTE")
+senha = obter_credencial("EMAIL_SENHA")
+
+print(f"Pronto pra enviar como {remetente} 🔐")</code></pre>
+
+<div class="tip-box">
+    💡 Validar com <code>.get()</code> + <code>if not valor</code> evita que o script quebre com um erro genérico se alguém esquecer de configurar o <code>.env</code> — ele já avisa exatamente o que falta.
+</div>
+
 <div class="text-center mt-3">
-    <p style="font-size: 1.3em; color: var(--success-color);">🎉 Agora você domina as estruturas de dados do Python!</p>
-    <p style="color: var(--text-secondary); margin-top: 15px;">
-        Próximo passo: <strong>Módulo 3 — Python + SQL (A Ponte)</strong><br>
-        (Conectando ao banco, executando queries, pandas)
-    </p>
+    <p style="font-size: 1.3em; color: var(--success-color);">💎 Nível Diamante concluído! As 8 missões estão feitas — hora do Projeto Final 🏆</p>
 </div>
 
             <div class="nav-bar">
-                <a href="m2_12_desafio.html" class="nav-btn">⬅ Anterior</a>
-                <span class="nav-progress">m2_13</span>
-                <a href="m3_01_capa.html" class="nav-btn">Próximo ➡</a>
+                <a href="m5_08_diamante_missao1.html" class="nav-btn">⬅ Anterior</a>
+                <span class="nav-progress">m5_09_diamante_missao2</span>
+                <a href="m5_10_projeto_final.html" class="nav-btn">Próximo ➡</a>
             </div>
         </div>
 
     </div>
-    <script>
+    <script>    <script>
 // ============================================
 // PYTHON PARA QUEM MANDA NO SQL - SCRIPTS
 // ============================================

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Checklist — Módulo 2 | Python para SQL</title>
+    <title>🥈 Missão Prata 2 | Python para SQL</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
 /* ============================================
@@ -546,44 +549,63 @@ pre code {
 }
 
     </style>
+    </style>
 </head>
-<body data-slide-id="m2_13">
+<body data-slide-id="m5_05_prata_missao2">
     <div class="container">
 
         <div class="slide">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <span class="badge badge-accent">Módulo 2</span>
+                <span class="badge badge-accent">Módulo 5</span>
                 <a href="../index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9em;">🏠 Voltar ao início</a>
             </div>
 
-            <h1>✅ Checklist — Módulo 2</h1>
-            <p style="color: var(--accent-color); font-size: 1.1em; margin-bottom: 25px;">Marque o que você já domina:</p>
+            <h1><span style="color:#c0c0c0">🥈 Missão Prata 2</span> — Sets e Duplicados</h1>
 
-            <ul class="checklist">
-    <li><input type="checkbox" data-id="1"> Criei e manipulei uma <strong>lista</strong> (append, insert, remove, sort)</li>
-    <li><input type="checkbox" data-id="2"> Criei e acessei um <strong>dicionário</strong> (chave-valor)</li>
-    <li><input type="checkbox" data-id="3"> Entendi a diferença entre <strong>lista</strong> (mutável) e <strong>tupla</strong> (imutável)</li>
-    <li><input type="checkbox" data-id="4"> Usei <strong>set</strong> para remover duplicatas e fazer operações de conjunto</li>
-    <li><input type="checkbox" data-id="5"> Fiz um <strong>List Comprehension</strong> com filtro e transformação</li>
-    <li><input type="checkbox" data-id="6"> Completei o Desafio Final do Módulo 2</li>
-</ul>
+            <div class="challenge-box">
+    <h4>Missão</h4>
+    <p>Recapitulando <strong>sets, tuplas e list comprehension</strong> (Módulo 2): você recebeu uma lista de cidades de clientes com duplicatas. Descubra as cidades únicas e monte uma lista de tuplas <code>(cidade, quantidade_de_clientes)</code>.</p>
+</div>
+
+<div class="code-label">Gabarito</div>
+<pre><code class="python">cidades_clientes = [
+    "São Paulo", "Curitiba", "São Paulo", "Recife",
+    "Curitiba", "São Paulo", "Porto Alegre"
+]
+
+# Cidades únicas
+cidades_unicas = set(cidades_clientes)
+print(f"Cidades únicas: {cidades_unicas}")
+
+# Quantidade de clientes por cidade
+contagem = [
+    (cidade, cidades_clientes.count(cidade))
+    for cidade in cidades_unicas
+]
+
+# Ordena da cidade com mais clientes pra menos
+contagem.sort(key=lambda item: item[1], reverse=True)
+
+for cidade, qtd in contagem:
+    print(f"{cidade}: {qtd} cliente(s)")</code></pre>
+
+<div class="tip-box">
+    💡 <code>set()</code> é exatamente o <code>SELECT DISTINCT</code>. E <code>.count()</code> + agrupar por item lembra um <code>GROUP BY cidade, COUNT(*)</code>.
+</div>
+
 <div class="text-center mt-3">
-    <p style="font-size: 1.3em; color: var(--success-color);">🎉 Agora você domina as estruturas de dados do Python!</p>
-    <p style="color: var(--text-secondary); margin-top: 15px;">
-        Próximo passo: <strong>Módulo 3 — Python + SQL (A Ponte)</strong><br>
-        (Conectando ao banco, executando queries, pandas)
-    </p>
+    <p style="font-size: 1.2em; color: var(--success-color);">🥈 Nível Prata concluído! Próximo: Ouro 🥇</p>
 </div>
 
             <div class="nav-bar">
-                <a href="m2_12_desafio.html" class="nav-btn">⬅ Anterior</a>
-                <span class="nav-progress">m2_13</span>
-                <a href="m3_01_capa.html" class="nav-btn">Próximo ➡</a>
+                <a href="m5_04_prata_missao1.html" class="nav-btn">⬅ Anterior</a>
+                <span class="nav-progress">m5_05_prata_missao2</span>
+                <a href="m5_06_ouro_missao1.html" class="nav-btn">Próximo ➡</a>
             </div>
         </div>
 
     </div>
-    <script>
+    <script>    <script>
 // ============================================
 // PYTHON PARA QUEM MANDA NO SQL - SCRIPTS
 // ============================================

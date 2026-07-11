@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Checklist — Módulo 2 | Python para SQL</title>
+    <title>Gabarito do Projeto Final | Python para SQL</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
 /* ============================================
@@ -546,44 +549,106 @@ pre code {
 }
 
     </style>
+    </style>
 </head>
-<body data-slide-id="m2_13">
+<body data-slide-id="m5_11_gabarito_projeto">
     <div class="container">
 
         <div class="slide">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <span class="badge badge-accent">Módulo 2</span>
+                <span class="badge badge-accent">Módulo 5</span>
                 <a href="../index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9em;">🏠 Voltar ao início</a>
             </div>
 
-            <h1>✅ Checklist — Módulo 2</h1>
-            <p style="color: var(--accent-color); font-size: 1.1em; margin-bottom: 25px;">Marque o que você já domina:</p>
+            <h1>📖 Gabarito Comentado — Projeto Final</h1>
 
-            <ul class="checklist">
-    <li><input type="checkbox" data-id="1"> Criei e manipulei uma <strong>lista</strong> (append, insert, remove, sort)</li>
-    <li><input type="checkbox" data-id="2"> Criei e acessei um <strong>dicionário</strong> (chave-valor)</li>
-    <li><input type="checkbox" data-id="3"> Entendi a diferença entre <strong>lista</strong> (mutável) e <strong>tupla</strong> (imutável)</li>
-    <li><input type="checkbox" data-id="4"> Usei <strong>set</strong> para remover duplicatas e fazer operações de conjunto</li>
-    <li><input type="checkbox" data-id="5"> Fiz um <strong>List Comprehension</strong> com filtro e transformação</li>
-    <li><input type="checkbox" data-id="6"> Completei o Desafio Final do Módulo 2</li>
-</ul>
-<div class="text-center mt-3">
-    <p style="font-size: 1.3em; color: var(--success-color);">🎉 Agora você domina as estruturas de dados do Python!</p>
-    <p style="color: var(--text-secondary); margin-top: 15px;">
-        Próximo passo: <strong>Módulo 3 — Python + SQL (A Ponte)</strong><br>
-        (Conectando ao banco, executando queries, pandas)
-    </p>
+            <p>Uma solução completa, unindo os 4 módulos:</p>
+
+            <pre style="font-size: 0.68em;"><code class="python">import sqlite3
+import pandas as pd
+import logging
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+logging.basicConfig(filename="projeto_final.log", level=logging.INFO,
+                     format="%(asctime)s - %(levelname)s - %(message)s")
+
+# 1. Dados modelados em Python (Módulos 1-2)
+clientes = [
+    {"id": 1, "nome": "Ana", "cidade": "São Paulo"},
+    {"id": 2, "nome": "Bruno", "cidade": "Curitiba"},
+    {"id": 3, "nome": "Carla", "cidade": "São Paulo"},
+]
+vendas = [
+    (1, "Mouse", 50.0), (1, "Teclado", 120.0),
+    (2, "Monitor", 800.0), (3, "Webcam", 200.0), (2, "Mouse", 50.0),
+]
+
+def setup_banco():
+    # 2. Tabelas + queries parametrizadas (Módulo 3)
+    conexao = sqlite3.connect(":memory:")
+    cursor = conexao.cursor()
+    cursor.execute("""CREATE TABLE clientes (
+        id INTEGER PRIMARY KEY, nome TEXT, cidade TEXT)""")
+    cursor.execute("""CREATE TABLE vendas (
+        id INTEGER PRIMARY KEY, cliente_id INTEGER, produto TEXT, valor REAL)""")
+
+    cursor.executemany("INSERT INTO clientes VALUES (?, ?, ?)",
+        [(c["id"], c["nome"], c["cidade"]) for c in clientes])
+    cursor.executemany(
+        "INSERT INTO vendas (cliente_id, produto, valor) VALUES (?, ?, ?)", vendas)
+    conexao.commit()
+    return conexao
+
+def extract(conexao):
+    # 3. JOIN direto no pandas (Módulo 3)
+    return pd.read_sql_query("""
+        SELECT c.nome, c.cidade, v.valor
+        FROM vendas v JOIN clientes c ON c.id = v.cliente_id
+    """, conexao)
+
+def transform(df):
+    por_cliente = df.groupby("nome")["valor"].sum().reset_index()
+    por_cidade = df.groupby("cidade")["valor"].sum().reset_index()
+    return por_cliente, por_cidade
+
+def load(por_cliente, por_cidade):
+    Path("saida").mkdir(exist_ok=True)
+    por_cliente.to_csv("saida/vendas_por_cliente.csv", index=False)
+    por_cidade.to_csv("saida/vendas_por_cidade.csv", index=False)
+
+# 4-5. Pipeline com try/except, logging e .env (Módulo 4)
+try:
+    destinatario = os.environ.get("EMAIL_DESTINO", "financeiro@empresa.com")
+    conexao = setup_banco()
+    df = extract(conexao)
+    conexao.close()
+
+    por_cliente, por_cidade = transform(df)
+    load(por_cliente, por_cidade)
+
+    logging.info(f"Projeto final executado, relatório pronto pra {destinatario}")
+    print("✅ Relatório gerado em saida/vendas_por_cliente.csv e saida/vendas_por_cidade.csv")
+    print(por_cliente)
+except Exception as e:
+    logging.error(f"Falha no projeto final: {e}")
+    print(f"❌ Erro: {e}")</code></pre>
+
+<div class="tip-box">
+    💡 Repare como cada bloco de código tem uma "assinatura" de um módulo diferente — é isso que faz esse projeto ser realmente um <strong>fechamento</strong> do curso, não uma coisa nova.
 </div>
 
             <div class="nav-bar">
-                <a href="m2_12_desafio.html" class="nav-btn">⬅ Anterior</a>
-                <span class="nav-progress">m2_13</span>
-                <a href="m3_01_capa.html" class="nav-btn">Próximo ➡</a>
+                <a href="m5_10_projeto_final.html" class="nav-btn">⬅ Anterior</a>
+                <span class="nav-progress">m5_11_gabarito_projeto</span>
+                <a href="m5_12_certificado.html" class="nav-btn">Próximo ➡</a>
             </div>
         </div>
 
     </div>
-    <script>
+    <script>    <script>
 // ============================================
 // PYTHON PARA QUEM MANDA NO SQL - SCRIPTS
 // ============================================

@@ -3,8 +3,8 @@
 > Um cursinho leve, moderno e feito com carinho para quem já domina SQL e quer aprender Python.
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?logo=github)](https://gustavodeoliveiradev.github.io/python-para-sql-curso/)
-[![Módulos](https://img.shields.io/badge/Módulos-5%2F6-blue)]()
-[![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)]()
+[![Módulos](https://img.shields.io/badge/Módulos-6%2F6%20✅-brightgreen)]()
+[![Status](https://img.shields.io/badge/Status-Completo-brightgreen)]()
 
 ---
 
@@ -25,7 +25,7 @@ Não precisa instalar nada! Os slides funcionam direto no navegador.
 | **2** | 📦 Estruturas de Dados | 13 slides | ✅ Pronto | [Ver slides](slides/m2_01_capa.html) |
 | **3** | 🔗 Python + SQL (A Ponte) | 13 slides | ✅ Pronto | [Ver slides](slides/m3_01_capa.html) |
 | **4** | ⚙️ Automação & Scripts Úteis | 13 slides | ✅ Pronto | [Ver slides](slides/m4_01_capa.html) |
-| **5** | 🏆 Projeto Final & Desafios | ~8 slides | ⏳ Em breve | — |
+| **5** | 🏆 Projeto Final & Desafios | 13 slides | ✅ Pronto | [Ver slides](slides/m5_01_capa.html) |
 
 **Tempo sugerido:** 1 módulo por semana
 
