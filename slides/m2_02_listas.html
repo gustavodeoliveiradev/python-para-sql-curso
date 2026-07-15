@@ -622,6 +622,9 @@ function initCheckboxes() {
         if (saved === 'true') {
             checkbox.checked = true;
             checkbox.closest('li').classList.add('checked');
+        } else {
+            checkbox.checked = false;
+            checkbox.closest('li').classList.remove('checked');
         }
 
         // Salva no click
