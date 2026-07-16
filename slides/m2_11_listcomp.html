@@ -252,10 +252,21 @@ pre code {
 
 .vs-box {
     flex: 1;
+    min-width: 0;
     background: #1a1a1a;
     border-radius: 10px;
     padding: 18px;
     border: 1px solid #3e3e42;
+    display: flex;
+    flex-direction: column;
+}
+
+.vs-box pre {
+    flex: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
 }
 
 .vs-box h4 {
