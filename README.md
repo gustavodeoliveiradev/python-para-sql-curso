@@ -56,7 +56,8 @@ python-para-sql-curso/
     ├── modulo_1.py
     ├── modulo_2.py
     ├── modulo_3.py
-    └── modulo_4.py
+    ├── modulo_4.py
+    └── modulo_5.py
 ```
 
 ---
